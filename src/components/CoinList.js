@@ -20,7 +20,7 @@ function CoinList() {
       <Text fontSize="2xl" mb={4}>Coin List</Text>
       <VStack spacing={4} align="stretch">
         {coins.map(coin => (
-          <Box key={coin.coin_id} p={4} borderWidth="1px" borderRadius="lg">
+          <Box key={coin.coin_id || `${coin.name}-${coin.symbol}`} p={4} borderWidth="1px" borderRadius="lg">
             <Text fontWeight="bold">{coin.name}</Text>
             <Text>Symbol: {coin.symbol}</Text>
             <Text>Current Price: ${coin.current_price}</Text>
