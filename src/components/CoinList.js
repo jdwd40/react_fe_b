@@ -1,22 +1,14 @@
 // src/components/CoinList.js
 import React, { useContext, useEffect } from 'react';
-import {
-  Box,
-  Center,
-  Text,
-  Stack,
-  List,
-  ListItem,
-  ListIcon,
-  Button,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Box, Center, Text, Stack, List, ListItem, ListIcon, Button, useColorModeValue } from '@chakra-ui/react';
 import { CheckIcon } from '@chakra-ui/icons';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { CoinContext } from '../CoinContext';
 
 function CoinList() {
   const { coins, setCoins } = useContext(CoinContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get('http://77.68.4.18:9001/api/coins/')
@@ -38,7 +30,7 @@ function CoinList() {
         {coins.map(coin => (
           <Center py={6} key={coin.coin_id}>
             <Box
-              maxW={'330px'}
+              maxW={'200px'}  // Adjusted the max width to be smaller
               w={'full'}
               bg={bgColor}
               boxShadow={'2xl'}
@@ -46,7 +38,7 @@ function CoinList() {
               overflow={'hidden'}>
               <Stack
                 textAlign={'center'}
-                p={6}
+                p={4}  
                 color={textColor}
                 align={'center'}>
                 <Text
@@ -60,15 +52,15 @@ function CoinList() {
                   {coin.name}
                 </Text>
                 <Stack direction={'row'} align={'center'} justify={'center'}>
-                  <Text fontSize={'3xl'}>$</Text>
-                  <Text fontSize={'6xl'} fontWeight={800}>
+                  <Text fontSize={'2xl'}>$</Text>  // Adjusted font size
+                  <Text fontSize={'4xl'} fontWeight={800}>
                     {coin.current_price}
                   </Text>
                   <Text color={'gray.500'}>/coin</Text>
                 </Stack>
               </Stack>
 
-              <Box bg={boxBgColor} px={6} py={10}>
+              <Box bg={boxBgColor} px={4} py={6}> 
                 <List spacing={3}>
                   <ListItem>
                     <ListIcon as={CheckIcon} color="green.400" />
@@ -81,7 +73,7 @@ function CoinList() {
                 </List>
 
                 <Button
-                  mt={10}
+                  mt={6}
                   w={'full'}
                   bg={'green.400'}
                   color={'white'}
@@ -92,7 +84,9 @@ function CoinList() {
                   }}
                   _focus={{
                     bg: 'green.500',
-                  }}>
+                  }}
+                  onClick={() => navigate(`/coin/${coin.coin_id}`)}
+                >
                   View Details
                 </Button>
               </Box>
