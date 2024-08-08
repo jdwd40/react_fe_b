@@ -471,5 +471,3 @@ The app will display a list of real-time prices from an API and allow users to l
 - Display user's name and their overall balance.
 
 ---
-
-This document provides a comprehensive overview of how to use the API for all actions within your crypto coin exchange simulator application. If you have any further questions or need more details on specific endpoints, please feel free to ask.
